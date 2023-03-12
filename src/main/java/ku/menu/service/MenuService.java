@@ -37,9 +37,13 @@ public class MenuService {
     }
 
     public Menu create(Menu menu) {
-        System.out.println("Before JPA: " + menu);
-        Menu record = menuRepository.save(menu);
-        System.out.println("After JPA: " + menu);
+
+        Menu record = new Menu();
+        if (menu.getPrice() > 0){
+            record.setPrice(menu.getPrice());
+        }
+
+        menuRepository.save(menu);
         return record;
     }
 
